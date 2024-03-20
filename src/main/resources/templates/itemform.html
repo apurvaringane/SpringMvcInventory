@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Spring MVC</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+</head>
+<body>
+<nav class="navbar bg-primary">
+    <div class="container-fluid">
+        <a class="navbar-brand" th:href="@{/}">ITEM FORM</a>
+        <a class="navbar-brand" th:href="@{/inventory}">INVENTORY</a>
+    </div>
+</nav>
+
+<div class="container">
+    <div class="row mb-3">
+        <h1 class="text-center">ADD NEW ITEM</h1>
+    </div>
+    <div class="mb-3">
+        <form method="post" th:action="@{/saveitem}" th:object="${item}">
+        <div class="mb-3">
+            <label>SELECT CATEGORY</label>
+            <select class="form-control" th:field="*{category}">
+                <option value=""></option>
+                <option th:each="category:${categories}" th:text="${category}" th:value="${category}"></option>
+                <p style="color:red" th:errors="*{category}"></p>
+            </select>
+        </div>
+
+        <div class="mb-3">
+            <label>ITEM NAME</label>
+            <input typ="text" class="form-control" th:field="*{name}"/>
+            <p style="color:red" th:errors="*{name}"></p>
+        </div>
+
+        <div class="mb-3">
+            <div class="row">
+            <div class="col-6">
+                <label>PRICE</label>
+                <input type="text" class="form-control" th:field="*{price}"/>
+                <p style="color:red" th:errors="*{price}"></p>
+            </div>
+
+                <div class="col-6">
+                    <label>DISCOUNT</label>
+                    <input type="text" class="form-control" th:field="*{discount}"/>
+                </div>
+            </div>
+        </div>
+
+            <div class="row mb-3">
+                <label>ORDER DATE</label>
+                <input type="date" class="form-control" th:field="*{date}"/>
+                <p style="color:red" th:errors="*{date}"></p>
+            </div>
+
+            <div class="mb-3">
+             <center> <input type="submit" class="btn btn-success" value="Add Stock"></center>
+            </div>
+
+        </div>
+
+    </form>
+</div>
+
+</div>
+
+</body>
+</html>

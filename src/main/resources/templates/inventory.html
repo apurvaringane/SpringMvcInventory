@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Spring MVC Inventory</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+</head>
+<body>
+
+<div class="container">
+  <table class="table">
+    <thead>
+    <tr>
+      <th>CATEGORY</th>
+      <th>ITEM NAME</th>
+        <th>PRICE</th>
+        <th>DISCOUNT</th>
+        <th>ORDER DATE</th>
+      <th>ACTION</th>
+    </tr>
+    </thead>
+
+    <tbody>
+   <tr th:each="i:${item}">
+       <td th:text="${i.category}"></td>
+       <td th:text="${i.name}"></td>
+       <td th:text="${#numbers.formatCurrency(i.price)}"></td>
+       <td th:text="${#numbers.formatCurrency(i.discount)}"></td>
+       <td th:text="${i.joins}"></td>
+       <td>
+           <button type="submit" class="btn btn-warning">UPDATE</button>
+           <a th:href="@{/delete/{name}(name=${i.name})}"><button class="btn btn-danger">DELETE</button></a>
+       </td>
+   </tr>
+    </tbody>
+  </table>
+</div>
+</body>
+</html>
